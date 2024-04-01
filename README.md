@@ -55,13 +55,13 @@ api failed to CREATE  with: invalid RAW event data title|text
 
 **## попытка создать дополнительное событие на уже существующую дату**
 $ curl http://127.0.0.1:5000/api/v1/calendar/ -X POST -d "2024-03-28|title|some new text"
-api failed to CREATE  with: failed CREATE operation with: failed CREATE operation with: event date 2024-03-28  FOUND in storage
+api failed to CREATE  with: event date already exists!
 
-$ curl http://127.0.0.1:5000/api/v1/calendar/1/ -X PUT -d "title|new text"
+$ curl http://127.0.0.1:5000/api/v1/calendar/1/ -X PUT -d "2024-03-28|title|new text 555"
 updated
 
 $ curl http://127.0.0.1:5000/api/v1/calendar/1/
-1|title|new text
+1|2024-03-28|title|new text 555
 
 $ curl http://127.0.0.1:5000/api/v1/calendar/1/ -X PUT -d "title|loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong text loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong text"
 failed to UPDATE with: text lenght > MAX: 200

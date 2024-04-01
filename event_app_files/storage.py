@@ -9,29 +9,19 @@ class LocalStorage:
     def __init__(self):
         self._id_counter = 0
         self._storage = {}
-        # self.all_event_dates = []
 
-    # def get_all_events(self):
-    #     event_dates = []
-    #     for event in self._storage:
-    #         event_dates += event.date
-    #     return event_dates
 
     def _check_duplicate_date(self, date: str) -> bool:
         for stored_event in self._storage:
-            if date == stored_event.date:
+            if date == self._storage[stored_event].date:
                 return True
         return False
 
 
     def create(self, event: model.Event) -> str:
-        # for i in self._storage:
-        #     if self._storage[i].date == event.date:
-        #         raise StorageException(f"event date {event.date}  FOUND in storage")
         self._id_counter += 1
         event.id = str(self._id_counter)
         self._storage[event.id] = event
-        # self.all_event_dates += event.date
         return event.id
 
     def list(self) -> List[model.Event]:

@@ -9,20 +9,12 @@ class DBException(Exception):
 class EventDB:
     def __init__(self):
         self._storage = storage.LocalStorage()
-        # self.all_event_dates = storage.LocalStorage()
-
-    # def get_all_events(self):
-    #     try:
-    #         return self._storage.get_all_events()
-    #     except Exception as ex:
-    #         raise DBException(f"failed get_all_events operation with: {ex}")
 
     def _check_duplicate_date(self, date: str) -> bool:
         try:
-            return self._check_duplicate_date(date)
+            return self._storage._check_duplicate_date(date)
         except Exception as ex:
-            raise DBException(f"failed to check date duplication")
-
+            raise DBException(f"failed to check date duplication {ex}")
 
     def create(self, event: model.Event) -> str:
         try:

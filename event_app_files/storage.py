@@ -23,6 +23,7 @@ class LocalStorage:
                 return True
         return False
 
+
     def create(self, event: model.Event) -> str:
         # for i in self._storage:
         #     if self._storage[i].date == event.date:

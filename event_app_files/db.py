@@ -17,6 +17,13 @@ class EventDB:
     #     except Exception as ex:
     #         raise DBException(f"failed get_all_events operation with: {ex}")
 
+    def _check_duplicate_date(self, date: str) -> bool:
+        try:
+            return self._check_duplicate_date(date)
+        except Exception as ex:
+            raise DBException(f"failed to check date duplication")
+
+
     def create(self, event: model.Event) -> str:
         try:
             return self._storage.create(event)

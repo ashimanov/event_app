@@ -31,6 +31,8 @@ class EventLogic:
 
     def create(self, event: model.Event) -> str:
         self._validate_event(event)
+        if self._event_db._check_duplicate_date(event.date):
+            raise LogicException(f"event date already exists!")
         try:
             return self._event_db.create(event)
         except Exception as ex:
